@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import Card from "../../components/Card";
+import Modal from "../../components/Modal";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
@@ -88,6 +89,18 @@ function Home() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+<Modal isOpen={!!selectedCard} onClose={() => setSelectedCard(null)}>
+        {selectedCard && (
+          <div className="modal-inner">
+            <img src={selectedCard.image} alt={selectedCard.title} />
+            <h2>{selectedCard.title}</h2>
+            <p>{selectedCard.details}</p>
+          </div>
+        )}
+      </Modal>
+
+
 
       
       <div className="login-box">

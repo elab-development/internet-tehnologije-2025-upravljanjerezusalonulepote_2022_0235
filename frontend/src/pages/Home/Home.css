@@ -216,3 +216,26 @@
     font-size: 48px;
   }
 }
+
+.modal-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-inner img {
+  width: 100%;
+  border-radius: 12px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.modal-inner h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.modal-inner p {
+  font-size: 16px;
+  color: #444;
+}
