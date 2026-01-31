@@ -5,6 +5,8 @@ import Home from './pages/Home/Home'
 import Register from "./pages/Register/Register";
 import About from "./pages/About/About";
 
+import Footer from './components/Footer';
+
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from './components/Navbar';
 
@@ -23,7 +25,8 @@ function App() {
           <Route path="/about" element={<About />} />
         </Routes>
 
-        
+
+        <Footer />
 
       </Router>
     </div>
