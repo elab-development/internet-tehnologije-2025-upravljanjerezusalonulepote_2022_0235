@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+.home {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.headerContainer {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.headerContainer h1 {
+  font-family: "Monoton", cursive;
+  font-size: 64px;
+  color: #ff3f7a;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.headerContainer .quote {
+  font-family: "Dancing Script", cursive;
+  font-size: 18px;
+  color: #ff2e63;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+.cards-swiper {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px 0 60px 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.card-wrapper {
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.card-wrapper:hover {
+  transform: scale(1.03);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background: #ff3f7a;
+  color: white;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  box-shadow: 0 6px 15px rgba(255, 63, 122, 0.4);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
+.swiper-button-prev {
+  left: -60px;
+}
+
+.swiper-button-next {
+  right: -60px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ff3f7a;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.login-box {
+  max-width: 1100px;
+  margin: 80px auto 60px auto;
+  padding: 40px 50px;
+  background: linear-gradient(135deg, #ff3f7a, #ff8fb3);
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(255, 63, 122, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-box::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.login-box h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.login-box p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+.login-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.login-buttons button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.login-buttons button:first-child {
+  background: white;
+  color: #ff3f7a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-buttons button:first-child:hover {
+  transform: translateY(-2px);
+  background: #fdfdfd;
+}
+
+.login-buttons .outline {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.login-buttons .outline:hover {
+  background: white;
+  color: #ff3f7a;
+  transform: translateY(-2px);
+}
+
+.map-section {
+  max-width: 1100px;
+  margin: 60px auto 100px auto;
+  text-align: center;
+  width: 100%;
+}
+
+.map-section h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #222;
+}
+
+.map-section iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+}
+
+.map-section iframe:hover {
+  transform: scale(1.01);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .swiper-button-prev {
+    left: -20px;
+  }
+  .swiper-button-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    padding: 30px 25px;
+  }
+
+  .login-box h3 {
+    font-size: 22px;
+  }
+
+  .map-section iframe {
+    height: 300px;
+  }
+
+  .headerContainer h1 {
+    font-size: 48px;
+  }
+}

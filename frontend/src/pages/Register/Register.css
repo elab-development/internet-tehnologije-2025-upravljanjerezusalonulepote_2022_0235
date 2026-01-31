@@ -1,0 +1,104 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff3f7a, #ff8fb3);
+  padding: 20px;
+}
+
+/* BOX */
+.register-box {
+  width: 400px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 35px 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  animation: fadeInRegister 0.6s ease;
+}
+
+.register-box h2 {
+  margin-bottom: 22px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* INPUTS */
+.register-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-inputs input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.register-inputs input:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 2px rgba(255, 63, 122, 0.4);
+}
+
+/* BUTTON */
+.register-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  background: white;
+  color: #ff3f7a;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* LINK */
+.register-login-link {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.register-login-link a {
+  color: white;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ANIMACIJA */
+@keyframes fadeInRegister {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .register-box {
+    width: 100%;
+    padding: 30px 25px;
+  }
+}

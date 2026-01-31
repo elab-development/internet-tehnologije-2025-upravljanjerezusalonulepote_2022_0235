@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff9aa2 0%, #ff6f91 50%, #ff3f7a 100%);
+  min-height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); 
+  padding: 20px;
+}
+
+.login-form {
+  width: 360px;
+  max-width: 90%;
+  padding: 35px 25px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form .logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border: 4px solid #ff5a7a;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #ff5a7a;
+  outline: none;
+  font-size: 16px;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #ff2e63;
+  box-shadow: 0 0 0 4px rgba(255, 46, 99, 0.2);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 45px; /* prostor za ikonu oka */
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ff5a7a;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.password-toggle:hover {
+  color: #ff2e63;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ff3f7a 0%, #ff6f91 100%);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(255, 63, 122, 0.4);
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 63, 122, 0.6);
+}
+
+.error-message {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #ffdde0;
+  color: #b00020;
+  text-align: center;
+  font-weight: 600;
+}
+
+.links-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.link {
+  color: #ff2a5c;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.divider {
+  color: #d8d8d8;
+}
+@media (max-width: 500px) {
+  .login-form {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .login-form .logo {
+    width: 90px;
+    height: 90px;
+  }
+} 
