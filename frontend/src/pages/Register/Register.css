@@ -7,7 +7,6 @@
   padding: 20px;
 }
 
-/* BOX */
 .register-box {
   width: 400px;
   background: rgba(255, 255, 255, 0.25);
@@ -27,7 +26,6 @@
   font-weight: 600;
 }
 
-/* INPUTS */
 .register-inputs {
   display: flex;
   flex-direction: column;
@@ -49,7 +47,6 @@
   box-shadow: 0 0 0 2px rgba(255, 63, 122, 0.4);
 }
 
-/* BUTTON */
 .register-btn {
   width: 100%;
   margin-top: 18px;
@@ -70,7 +67,6 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* LINK */
 .register-login-link {
   margin-top: 16px;
   font-size: 14px;
@@ -83,7 +79,6 @@
   text-decoration: underline;
 }
 
-/* ANIMACIJA */
 @keyframes fadeInRegister {
   from {
     opacity: 0;
@@ -95,7 +90,6 @@
   }
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
   .register-box {
     width: 100%;

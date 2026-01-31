@@ -190,7 +190,6 @@
   transform: scale(1.01);
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
   .swiper-button-prev {
     left: -20px;
