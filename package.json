@@ -1,0 +1,36 @@
+{
+  "name": "internet-tehnologije-2025-upravljanjerezusalonulepote_2022_0235",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000V\u0000e\u0000b\u0000 \u0000a\u0000p\u0000l\u0000i\u0000k\u0000a\u0000c\u0000i\u0000j\u0000a\u0000 \u0000z\u0000a\u0000 \u0000u\u0000p\u0000r\u0000a\u0000v\u0000l\u0000j\u0000a\u0000n\u0000j\u0000e\u0000 \u0000r\u0000e\u0000z\u0000e\u0000r\u0000v\u0000a\u0000c\u0000i\u0000j\u0000a\u0000m\u0000a\u0000 \u0000u\u0000 \u0000s\u0000a\u0000l\u0000o\u0000n\u0000u\u0000 \u0000l\u0000e\u0000p\u0000o\u0000t\u0000e\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elab-development/internet-tehnologije-2025-upravljanjerezusalonulepote_2022_0235.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/elab-development/internet-tehnologije-2025-upravljanjerezusalonulepote_2022_0235/issues"
+  },
+  "homepage": "https://github.com/elab-development/internet-tehnologije-2025-upravljanjerezusalonulepote_2022_0235#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.16.3",
+    "nodemailer": "^8.0.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
