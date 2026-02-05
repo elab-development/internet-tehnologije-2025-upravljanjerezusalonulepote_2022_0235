@@ -4,7 +4,7 @@ const sequelize = require("../config/database");
 const bcrypt = require("bcrypt");
 
 class User extends Model {
-  // Metoda za proveru lozinke
+  
   async validPassword(password) {
     return await bcrypt.compare(password, this.password);
   }
