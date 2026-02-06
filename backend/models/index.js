@@ -8,7 +8,6 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
-// Učitaj sve modele
 fs
   .readdirSync(__dirname)
   .filter(file => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
@@ -18,7 +17,6 @@ fs
     model.init(model.rawAttributes, { sequelize, modelName: model.name });
   });
 
-// Poveži modele (ako koriste associate)
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
