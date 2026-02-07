@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { User } = require("../models"); // Pretpostavka: sequelize index.js izvozi User
+const { User } = require("../models"); 
 require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY || "tajni_kljuc";
@@ -9,7 +9,6 @@ const register = async (req, res) => {
     try {
         const { name, email, password, role, phone } = req.body;
         
-        // Hesiranje lozinke
         const hashedPassword = bcrypt.hashSync(password, 8);
         
         const user = await User.create({ 
@@ -43,7 +42,6 @@ const login = async (req, res) => {
             return res.status(400).json({ success: false, error: "Pogrešna lozinka" });
         }
         
-        // Generisanje JWT tokena
         const token = jwt.sign(
             { id: user.id, role: user.role }, 
             SECRET_KEY, 
@@ -59,7 +57,6 @@ const login = async (req, res) => {
     }
 };
 
-// Logout na backendu obično samo šalje uspeh, jer klijent briše token
 const logout = async (req, res) => {
     res.json({ success: true, message: "Uspešno ste se odjavili" });
 };

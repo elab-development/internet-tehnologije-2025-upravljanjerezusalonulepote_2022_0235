@@ -1,4 +1,3 @@
-
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
 const bcrypt = require("bcrypt");
@@ -41,7 +40,6 @@ User.init({
   modelName: "User",
   timestamps: true,
   hooks: {
-    // Pre kreiranja ili promene korisnika, heširaj lozinku
     beforeCreate: async (user) => {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(user.password, salt);

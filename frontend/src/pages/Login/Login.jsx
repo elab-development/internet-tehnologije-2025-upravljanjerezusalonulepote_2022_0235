@@ -18,7 +18,7 @@ function Login() {
         setShowPassword(prev => !prev);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         setUsernameError("");
@@ -38,11 +38,31 @@ function Login() {
 
         if (!valid) return;
 
-        if (username === "admin" && password === "123") {
-            localStorage.setItem("auth", "true");
-            navigate("/main");
-        } else {
-            setPasswordError("Pogrešan username ili password.");
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                email: username, 
+                password: password
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                localStorage.setItem("auth", "true");
+                localStorage.setItem("token", data.data.token); 
+                localStorage.setItem("userName", data.data.user.name);
+                navigate("/"); 
+            } else {
+                setPasswordError(data.error || "Pogrešan email ili lozinka.");
+            }
+        } catch (error) {
+            console.error("Greška pri povezivanju:", error);
+            setPasswordError("Server nije dostupan. Proveri da li je backend pokrenut.");
         }
     };
 
