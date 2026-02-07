@@ -1,36 +1,46 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './pages/Login/Login'
-import Home from './pages/Home/Home'
-import Register from "./pages/Register/Register";
-import About from "./pages/About/About";
-
-import Footer from './components/Footer';
-
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import About from './pages/About/About';
+import Loader from './components/Loader';
 
+function AppContent() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-
-function App() {
+  const triggerTransition = (path) => {
+    setLoading(true); 
+    setTimeout(() => {
+      setLoading(false); 
+      navigate(path); 
+    }, 1000); 
+  };
 
   return (
-    <div className='App'>
-      <Router>      
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/login' element={<Login />}/>
-          <Route path="/register" element={<Register />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+    <>
+      {loading && <Loader />} 
+      <Navbar triggerTransition={triggerTransition} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+}
 
-
-        <Footer />
-
-      </Router>
-    </div>
-  )
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
 }
 
 export default App;
