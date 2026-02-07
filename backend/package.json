@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Veb aplikacija za upravljanje rezervacijama u salonu lepote",
   "main": "server.js",
+  "type": "commonjs",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",

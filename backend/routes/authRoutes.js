@@ -11,4 +11,4 @@ router.post("/logout", (req, res) => {
     res.json({ success: true, data: "Uspešan logout" });
 });
 
-export default router;
+module.exports = router;

@@ -1,22 +1,21 @@
-
 {
   "development": {
     "username": "root",
-    "password": "tvoja_mysql_lozinka",
-    "database": "salon_db",
+    "password": null,
+    "database": "kozmetickisalon",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "tvoja_mysql_lozinka",
+    "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "tvoja_mysql_lozinka",
+    "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"

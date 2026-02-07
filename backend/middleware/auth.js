@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const authenticateToken = (req, res, next) => {
+const protect = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(" ")[1];
     
@@ -17,4 +17,13 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-module.exports = { authenticateToken };
+const authorize = (...allowedRoles) => {
+    return (req, res, next) => {
+        if (!req.user || !allowedRoles.includes(req.user.role)) {
+            return res.status(403).json({ success: false, message: "Nemate pravo pristupa" });
+        }
+        next();
+    };
+};
+
+module.exports = { protect, authorize };

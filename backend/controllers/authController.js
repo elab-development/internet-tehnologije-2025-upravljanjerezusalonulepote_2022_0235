@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const { User } = require("../models"); // Pretpostavka: sequelize index.js izvozi User
 require("dotenv").config();
 
