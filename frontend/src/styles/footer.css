@@ -1,17 +1,18 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 .footer {
   width: 100%;
   background: linear-gradient(135deg, #ff3f7a, #ff8fb3);
   color: white;
   padding: 50px 20px 20px;
   margin-top: 80px;
+  font-family: "Poppins", sans-serif;
 }
 
 .footer-container {
   max-width: 1100px;
   margin: auto;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 40px;
 }
 
@@ -19,24 +20,12 @@
   margin-bottom: 10px;
 }
 
-.footer-links,
 .footer-contact {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.footer-links a {
-  color: white;
-  text-decoration: none;
-  opacity: 0.85;
-  transition: 0.2s;
-}
-
-.footer-links a:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
 
 .footer-bottom {
   text-align: center;

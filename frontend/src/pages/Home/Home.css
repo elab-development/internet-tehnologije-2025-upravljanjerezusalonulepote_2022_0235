@@ -97,6 +97,7 @@
   box-shadow: 0 15px 40px rgba(255, 63, 122, 0.35);
   position: relative;
   overflow: hidden;
+  font-family: "Poppins", sans-serif;
 }
 
 .login-box::before {
@@ -168,6 +169,7 @@
   margin: 60px auto 100px auto;
   text-align: center;
   width: 100%;
+  font-family: "Poppins", sans-serif;
 }
 
 .map-section h2 {

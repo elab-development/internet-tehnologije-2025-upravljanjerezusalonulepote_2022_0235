@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   z-index: 999;
+  font-family: "Poppins", sans-serif;
 }
 
 .modal-content {

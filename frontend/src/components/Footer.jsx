@@ -7,17 +7,10 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <h2>Slatkica 💖</h2>
+          <h2>Slatkica</h2>
           <p>Beauty platform za moderne salone.</p>
         </div>
 
-        <div className="footer-links">
-          <h4>Linkovi</h4>
-          <a href="/">Početna</a>
-          <a href="/about">O nama</a>
-          <a href="/login">Prijava</a>
-          <a href="/register">Registracija</a>
-        </div>
 
         <div className="footer-contact">
           <h4>Kontakt</h4>

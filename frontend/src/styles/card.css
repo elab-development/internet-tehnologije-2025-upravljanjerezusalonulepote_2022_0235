@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 .glass-card {
   width: 280px;
   height: 360px;
@@ -10,6 +10,8 @@
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
   transition: 0.3s ease;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
+
 }
 
 .glass-card:hover {

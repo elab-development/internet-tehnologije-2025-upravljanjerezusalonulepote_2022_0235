@@ -3,13 +3,14 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; /* važno za padding/margin */
+  box-sizing: border-box; 
+  font-family: "Poppins", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* uklanja horizontalni scroll */
+  overflow-x: hidden; 
   font-family: "Montserrat", sans-serif;
 }
 
