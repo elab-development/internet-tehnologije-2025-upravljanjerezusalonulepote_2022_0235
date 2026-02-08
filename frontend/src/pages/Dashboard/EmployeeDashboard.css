@@ -1,0 +1,193 @@
+.employee-title {
+  font-size: 2.8rem; 
+  text-align: center;
+  margin: 60px 0 10px;
+  font-weight: 800;
+  position: relative;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  
+  background: linear-gradient(135deg, #2c3e50 30%, #99CCFF 100%);
+  -webkit-background-clip: text;
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+.employee-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 6px; 
+  background: linear-gradient(135deg, #99CCFF 0%, #FBC2EB 100%); 
+  margin: 15px auto 0;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(153, 204, 255, 0.4);
+}
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.employee-card {
+  background: linear-gradient(135deg, #99CCFF 0%, #FBC2EB 100%);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-top: 4px solid #ff69b4;
+}
+
+.employee-container {
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  background-color: (135deg, #99CCFF 0%, #FBC2EB 100%); 
+  min-height: 100vh;
+}
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px; 
+  padding: 20px 0;
+  perspective: 1000px; 
+}
+
+.employee-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(153, 204, 255, 0.2);
+  border-color: #99CCFF;
+}
+
+.employee-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.employee-btns {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.approve-btn, .reject-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.approve-btn {
+  background-color: #99CCFF;
+  color: #1a4a7a;
+  box-shadow: 0 4px 0 #7fb8f0;
+}
+
+.approve-btn:hover {
+  background-color: #87bfff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #7fb8f0;
+}
+
+.approve-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #7fb8f0;
+}
+
+.reject-btn {
+  background: linear-gradient(135deg, #FFDEE9 0%, #FBC2EB 100%);
+  color: #880e4f;
+  box-shadow: 0 4px 0 #e1b1cc;
+}
+
+.reject-btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #e1b1cc;
+}
+
+.reject-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #e1b1cc;
+}
+
+.appointment-time-info {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+}
+
+.badge-date, .badge-time {
+  display: flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.badge-date {
+  background-color: #99CCFF; 
+  color: #1a4a7a; 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge-time {
+  background: linear-gradient(135deg, #FFDEE9 0%, #F3E5F5 100%);
+  color: #880e4f; 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.employee-card:hover .badge-date,
+.employee-card:hover .badge-time {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-details {
+  padding: 15px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  margin: 10px 0;
+}
+
+.appointment-details p {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.appointment-details strong {
+  color: #1a4a7a; 
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.client-name, .service-name {
+  color: #2c3e50;
+  font-weight: 500;
+}
