@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ff9aa2 0%, #ff6f91 50%, #ff3f7a 100%);
   min-height: 100vh;
-  font-family: "Poppins", sans-serif;
 }
 
 .page-container {
@@ -42,7 +41,6 @@ body {
 
 .input-group input {
   width: 100%;
-  font-family: "Poppins", sans-serif;
   padding: 14px 16px;
   border-radius: 12px;
   border: 2px solid #ff5a7a;
@@ -63,7 +61,7 @@ body {
 }
 
 .password-wrapper input {
-  padding-right: 45px;
+  padding-right: 45px; 
 }
 
 .password-toggle {
@@ -83,7 +81,6 @@ body {
 
 .btn-login {
   width: 100%;
-  font-family: "Poppins", sans-serif;
   padding: 14px 16px;
   border-radius: 12px;
   border: none;
@@ -102,7 +99,6 @@ body {
 }
 
 .error-message {
-  font-family: "Poppins", sans-serif;
   width: 100%;
   margin-top: 10px;
   padding: 10px;

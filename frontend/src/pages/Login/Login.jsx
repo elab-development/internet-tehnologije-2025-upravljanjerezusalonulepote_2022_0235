@@ -52,11 +52,21 @@ function Login() {
 
             const data = await response.json();
 
-            if (response.ok && data.success) {
-                localStorage.setItem("auth", "true");
-                localStorage.setItem("token", data.data.token); 
-                localStorage.setItem("userName", data.data.user.name);
-                navigate("/"); 
+        if (response.ok && data.success) {
+            const role = data.data.user.role; 
+
+            localStorage.setItem("auth", "true");
+            localStorage.setItem("token", data.data.token); 
+            localStorage.setItem("userRole", role);
+            localStorage.setItem("user", JSON.stringify(data.data.user)); 
+            
+            if (role === "MAKEUP_ARTIST" || role === "ADMIN") {
+                window.location.href = "/dashboard"; 
+            } else {
+                window.location.href = "/booking"; 
+            
+            }
+
             } else {
                 setPasswordError(data.error || "Pogrešan email ili lozinka.");
             }

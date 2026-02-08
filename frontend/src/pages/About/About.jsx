@@ -5,7 +5,7 @@ function About() {
   return (
     <div className="about-page">
       <div className="about-hero">
-        <h1>O nama</h1>
+        <h1>O nama💖</h1>
         <p>Slatkica – platforma koja povezuje korisnike i beauty salone.</p>
       </div>
 

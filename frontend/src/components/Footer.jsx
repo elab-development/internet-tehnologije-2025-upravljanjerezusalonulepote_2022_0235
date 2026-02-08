@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <h2>Slatkica</h2>
+          <h2>Slatkica💖</h2>
           <p>Beauty platform za moderne salone.</p>
         </div>
 

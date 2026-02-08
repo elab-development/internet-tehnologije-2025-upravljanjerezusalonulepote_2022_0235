@@ -1,66 +1,114 @@
-import { useState, useEffect, useRef } from "react";
-import slatkica from '../assets/slatkica.png';
-import '../styles/navbar.css';
-import { IoReorderFour, IoCloseOutline } from "react-icons/io5";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Logo from "../assets/slatkica.png";
+import { FaBars, FaUserCircle } from "react-icons/fa";
+import "../styles/navbar.css";
 
-export default function Navbar({ triggerTransition }) {
+function Navbar({ triggerTransition }) {
   const [openLinks, setOpenLinks] = useState(false);
-  const menuRef = useRef(null);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const toggleNavbar = () => setOpenLinks(prev => !prev);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && storedUser !== "undefined") {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+  }, [location]);
+
+  const toggleNavbar = () => setOpenLinks(!openLinks);
 
   const handleNavClick = (path) => {
-    setOpenLinks(false);
-    if (triggerTransition) triggerTransition(path);
+    setOpenLinks(false); // Zatvori meni ako je mobilni
+
+    if (triggerTransition) {
+      triggerTransition(path); 
+      setTimeout(() => {
+        navigate(path);
+      }, 300);
+    } else {
+      navigate(path);
+    }
   };
 
-  const handleLogoClick = () => handleNavClick("/");
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (openLinks && menuRef.current && !menuRef.current.contains(e.target)) {
-        setOpenLinks(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openLinks]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 600) setOpenLinks(false);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <nav className="navbar">
+    <div className="navbar">
       <div className="levaStrana" id={openLinks ? "open" : "close"}>
-        <img
-          src={slatkica}
-          alt="logo"
-          className="cursor-pointer logo"
-          onClick={handleLogoClick}
-        />
-        <div className="hiddenLinks" ref={menuRef}>
-          <a onClick={() => handleNavClick("/")}>Home</a>
-          <a onClick={() => handleNavClick("/register")}>Register</a>
-          <a onClick={() => handleNavClick("/login")}>Login</a>
-          <a onClick={() => handleNavClick("/about")}>O nama</a>
+        <img src={Logo} alt="logo" onClick={() => handleNavClick("/")} />
+
+        <div className="hiddenLinks">
+          <Link onClick={() => handleNavClick("/")}>Home</Link>
+          <Link onClick={() => handleNavClick("/about")}>About</Link>
+
+          {!user && (
+            <>
+              <Link onClick={() => handleNavClick("/login")}>Login</Link>
+              <Link onClick={() => handleNavClick("/register")}>Register</Link>
+            </>
+          )}
+
+          {user && (
+            <>
+              {user.role === "MAKEUP_ARTIST" && (
+                <Link onClick={() => handleNavClick("/dashboard")}>Moj Raspored</Link>
+              )}
+              {user.role === "CLIENT" && (
+                <Link onClick={() => handleNavClick("/booking")}>Rezerviši</Link>
+              )}
+              {user.role === "ADMIN" && (
+                <Link onClick={() => handleNavClick("/dashboard")}>Admin Panel</Link>
+              )}
+              <Link onClick={() => handleNavClick("/profile")} className="nav-user cursor-pointer">
+                <FaUserCircle style={{ marginRight: "5px" }} />
+                {user.name}
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
       <div className="desnaStrana">
-        <a onClick={() => handleNavClick("/")}>Home</a>
-        <a onClick={() => handleNavClick("/register")}>Register</a>
-        <a onClick={() => handleNavClick("/login")}>Login</a>
-        <a onClick={() => handleNavClick("/about")}>O nama</a>
+        <Link onClick={() => handleNavClick("/")}>Home</Link>
+        <Link onClick={() => handleNavClick("/about")}>About</Link>
 
-        <button className="menu-toggle" onClick={toggleNavbar}>
-          {openLinks ? <IoCloseOutline /> : <IoReorderFour />}
+        {!user && (
+          <>
+            <Link onClick={() => handleNavClick("/login")}>Login</Link>
+            <Link onClick={() => handleNavClick("/register")}>Register</Link>
+          </>
+        )}
+
+        {user && (
+          <>
+            {user.role === "MAKEUP_ARTIST" && (
+              <Link onClick={() => handleNavClick("/dashboard")}>Moj Raspored</Link>
+            )}
+            {user.role === "CLIENT" && (
+              <Link onClick={() => handleNavClick("/booking")}>Rezerviši</Link>
+            )}
+            {user.role === "ADMIN" && (
+              <Link onClick={() => handleNavClick("/dashboard")}>Admin Panel</Link>
+            )}
+            <div 
+                onClick={() => handleNavClick("/profile")} 
+                className="nav-user cursor-pointer"
+                style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+              >
+  <FaUserCircle style={{ marginRight: "5px" }} />
+  {user.name}
+</div>
+          </>
+        )}
+
+        <button onClick={toggleNavbar}>
+          <FaBars />
         </button>
       </div>
-    </nav>
+    </div>
   );
 }
+
+export default Navbar;
