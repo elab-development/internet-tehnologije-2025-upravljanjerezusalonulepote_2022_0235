@@ -4,7 +4,13 @@ const User = require("./user");
 const Schedule = require("../models/schedule");
 const Service = require("./service");
 
-class Appointment extends Model {}
+class Appointment extends Model {
+    static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'userId', as: 'client' });
+    this.belongsTo(models.Service, { foreignKey: 'serviceId', as: 'service' });
+    this.belongsTo(models.Schedule, { foreignKey: 'scheduleId', as: 'schedule' });
+  }
+}
 
 Appointment.init({
   id: {

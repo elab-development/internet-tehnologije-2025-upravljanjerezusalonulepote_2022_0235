@@ -4,7 +4,8 @@ const {
     createAppointment, 
     updateAppointment, 
     deleteAppointment,
-    getSchedules 
+    getSchedules,
+    approveAppointment
 } = require("../controllers/appointmentController");
 
 const { protect, authorize } = require("../middleware/auth");
@@ -18,6 +19,8 @@ router.use(protect);
 router.get("/", getAppointments); 
 
 router.post("/", authorize("CLIENT", "ADMIN"), createAppointment);
+
+router.put('/:id/status', authorize('ADMIN', 'MAKEUP_ARTIST'), approveAppointment);
 
 router.put("/:id", authorize("CLIENT", "MAKEUP_ARTIST", "ADMIN"), updateAppointment);
 
