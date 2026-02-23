@@ -22,7 +22,7 @@ function Navbar({ triggerTransition }) {
   const toggleNavbar = () => setOpenLinks(!openLinks);
 
   const handleNavClick = (path) => {
-    setOpenLinks(false); // Zatvori meni ako je mobilni
+    setOpenLinks(false); 
 
     if (triggerTransition) {
       triggerTransition(path); 
@@ -59,7 +59,7 @@ function Navbar({ triggerTransition }) {
                 <Link onClick={() => handleNavClick("/booking")}>Rezerviši</Link>
               )}
               {user.role === "ADMIN" && (
-                <Link onClick={() => handleNavClick("/dashboard")}>Admin Panel</Link>
+                <Link onClick={() => handleNavClick("/admin-dashboard")}>Admin Panel</Link>
               )}
               <Link onClick={() => handleNavClick("/profile")} className="nav-user cursor-pointer">
                 <FaUserCircle style={{ marginRight: "5px" }} />
@@ -90,7 +90,7 @@ function Navbar({ triggerTransition }) {
               <Link onClick={() => handleNavClick("/booking")}>Rezerviši</Link>
             )}
             {user.role === "ADMIN" && (
-              <Link onClick={() => handleNavClick("/dashboard")}>Admin Panel</Link>
+              <Link onClick={() => handleNavClick("/admin-dashboard")}>Admin Panel</Link>
             )}
             <div 
                 onClick={() => handleNavClick("/profile")} 

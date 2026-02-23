@@ -78,7 +78,7 @@ export default function EmployeeDashboard() {
                 <button className="approve-btn" onClick={() => handleStatusChange(a.id, "CONFIRMED")}>
                   Potvrdi
                 </button>
-                <button className="reject-btn" onClick={() => handleStatusChange(a.id, "REJECTED")}>
+                <button className="reject-btn" onClick={() => handleStatusChange(a.id, "CANCELED")}>
                   Odbij
                 </button>
               </div>
