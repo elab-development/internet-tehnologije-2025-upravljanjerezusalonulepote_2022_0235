@@ -1,14 +1,11 @@
 describe('Login proces - E2E Test', () => {
   it('uspešno se loguje kao admin i vidi naslov dashboarda', () => {
-    cy.visit('/login');
+    cy.visit('/login'); 
+    cy.get('input[placeholder="Username"]').type('ilidza@admin.com');
+    cy.get('input[placeholder="Password"]').type('lozinka123');
+    cy.get('.btn-login').click();
 
-    cy.get('input[name="email"]').type('ilidza@admin.com');
-    cy.get('input[name="password"]').type('lozinka123');
-
-    cy.get('button[type="submit"]').click();
-
-    cy.url().should('include', '/admin');
-
+    cy.url().should('include', '/admin-dashboard');
     cy.contains('Upravljanje svim rezervacijama').should('be.visible');
   });
 });
