@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: Kozmeticki salon API
+  version: 1.0.0
+  description: API za upravljanje rezervacijama i korisnicima
+
+servers:
+  - url: http://localhost:3000
+    description: Lokalni server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+tags:
+  - name: Auth
+    description: Registracija i prijava korisnika
+  - name: Appointments
+    description: Upravljanje terminima
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Registracija novog korisnika
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password]
+              properties:
+                name:
+                  type: string
+                  example: "Meli Melic"
+                email:
+                  type: string
+                  example: "meli@klijent.com"
+                password:
+                  type: string
+                  example: "sifra123"
+      responses:
+        201:
+          description: Korisnik uspešno registrovan
+
+  /api/auth/login:
+    post:
+      summary: Prijava na sistem
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  example: "ilidza@admin.com"
+                password:
+                  type: string
+                  example: "sifra123"
+      responses:
+        200:
+          description: Uspešan login, vraća token
+        401:
+          description: Pogrešni kredencijali
+
+  /api/auth/logout:
+    post:
+      summary: Odjava korisnika
+      tags: [Auth]
+      responses:
+        200:
+          description: Uspešan logout
+
+  /api/appointments/schedules:
+    get:
+      summary: Vraća listu svih dostupnih rasporeda
+      tags: [Appointments]
+      responses:
+        200:
+          description: Uspešno vraćeni rasporedi
+
+  /api/appointments:
+    post:
+      summary: Kreiranje nove rezervacije (Klijent)
+      tags: [Appointments]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serviceId:
+                  type: string
+                scheduleId:
+                  type: string
+      responses:
+        201:
+          description: Rezervacija kreirana
+
+  /api/appointments/{id}/status:
+    put:
+      summary: Promena statusa rezervacije
+      tags: [Appointments]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [PENDING, CONFIRMED, CANCELED]
+      responses:
+        200:
+          description: Status uspešno ažuriran
+
+  /api/appointments/{id}:
+    delete:
+      summary: Brisanje rezervacije
+      tags: [Appointments]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Obrisano

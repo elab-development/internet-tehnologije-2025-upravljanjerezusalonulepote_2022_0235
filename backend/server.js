@@ -21,7 +21,7 @@ const sequelize = new Sequelize(
 
 const PORT = process.env.PORT || 3000;
 
-sequelize.sync({ alter: true })
+sequelize.sync({ alter: false })
   .then(() => {
     console.log("Baza uspešno sinhronizovana");
     app.listen(PORT, () => {

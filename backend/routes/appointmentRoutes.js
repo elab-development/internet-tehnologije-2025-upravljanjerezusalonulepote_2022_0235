@@ -15,9 +15,7 @@ const router = express.Router();
 router.get("/schedules", getSchedules);
 
 router.use(protect);
-
-router.get("/", getAppointments); 
-
+router.get("/", getAppointments);
 router.post("/", authorize("CLIENT", "ADMIN"), createAppointment);
 
 router.put('/:id/status', authorize('ADMIN', 'MAKEUP_ARTIST'), approveAppointment);
