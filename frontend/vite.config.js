@@ -8,10 +8,12 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',
     include: ['**/*.{test,spec}.{js,jsx}'],
-    server: {
-      deps: {
-        inline: ['jsdom'],
-      },
-    },
+    deps: {
+      optimizer: {
+        web: {
+          include: ['jsdom']
+        }
+      }
+    }
   },
 })
