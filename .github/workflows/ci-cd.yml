@@ -78,6 +78,10 @@ jobs:
           cd backend && npm install
           cd ../frontend && npm install
 
+      - name: Run Vitest (Unit & Component) Tests
+        working-directory: ./frontend
+        run: npm run test
+
       - name: Start Backend in Background
         working-directory: ./backend
         env:
@@ -85,12 +89,12 @@ jobs:
           DB_USER: root
           DB_PASS: ""
           DB_NAME: kozmetickisalon
-          SECRET_KEY: tajna_za_testove
+          SECRET_KEY: tajni_kljuc
         run: |
           npx sequelize-cli db:migrate --url 'mysql://root@127.0.0.1:3306/kozmetickisalon'
           node seedAll.js
-          npm start & 
-          npx wait-on http://localhost:3000
+          npm start & # Ovaj '&' simbol šalje proces u pozadinu da ne blokira pipeline
+          sleep 10    # Dajemo backendu 10 sekundi da se stvarno podigne
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
