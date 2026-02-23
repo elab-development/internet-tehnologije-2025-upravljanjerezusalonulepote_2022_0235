@@ -1,22 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
-import { beforeEach, it, expect, vi } from 'vitest';
-
-import axios from 'axios';
-vi.mock('axios');
+import { BrowserRouter } from 'react-router-dom';
+import { expect, test, beforeEach } from 'vitest';
 
 beforeEach(() => {
   localStorage.clear();
-  vi.clearAllMocks();
-
-  localStorage.setItem('userRole', 'admin'); 
-  localStorage.setItem('token', 'fake-token');
+  localStorage.setItem('role', 'admin');
+  localStorage.setItem('token', 'fake-jwt-token');
+  localStorage.setItem('user', JSON.stringify({ role: 'admin' }));
 });
 
-it('Renderira naslov Admin Dashboarda', async () => {
-  axios.get.mockResolvedValue({ data: [] });
-
+test('Renderuje naslov Admin Dashboarda', async () => {
   render(
     <BrowserRouter>
       <AdminDashboard />
@@ -27,9 +21,7 @@ it('Renderira naslov Admin Dashboarda', async () => {
   expect(titleElement).toBeInTheDocument();
 });
 
-it('Prikazuje poruku kada je lista rezervacija prazna', async () => {
-  axios.get.mockResolvedValue({ data: [] });
-
+test('Prikazuje poruku kada je lista rezervacija prazna', async () => {
   render(
     <BrowserRouter>
       <AdminDashboard />
