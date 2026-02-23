@@ -2,7 +2,9 @@ import { render, screen } from '@testing-library/react';
 import AdminDashboard from './AdminDashboard';
 import { BrowserRouter } from 'react-router-dom';
 
-test('Renderira naslov Admin Dashboarda', () => {
+test('Renderuje naslov Admin Dashboarda', () => {
+  localStorage.setItem('role', 'admin');
+  localStorage.setItem('token', 'fake-jwt-token');
   render(
     <BrowserRouter>
       <AdminDashboard />
