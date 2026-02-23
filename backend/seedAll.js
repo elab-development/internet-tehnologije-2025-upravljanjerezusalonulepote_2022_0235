@@ -28,7 +28,7 @@ const seedDatabase = async () => {
         name: "Ilidza Ilidzic",
         email: "ilidza@admin.com",
         password: hashedPass,
-        role: "admin"
+        role: "ADMIN"
     });
 
     const usluge = await Service.bulkCreate([
