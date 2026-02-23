@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Card from "../../components/Card";
 import Modal from "../../components/Modal";
+import Map from "../../components/Map";
+import { useNavigate } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
@@ -12,8 +14,9 @@ import "swiper/css/navigation";
 import "./Home.css";
 
 function Home() {
+  const navigate = useNavigate();
   const [selectedCard, setSelectedCard] = useState(null);
-
+  const isLoggedIn = localStorage.getItem("token") || localStorage.getItem("userRole");
   const cards = [
   {
     title: "Classic Glow Facial",
@@ -117,28 +120,25 @@ function Home() {
           </div>
         )}
       </Modal>
-
-
-
       
-      <div className="login-box">
-        <h3>🔒 Za još bolje iskustvo, prijavite se!</h3>
-        <p>
-          Dobijajte personalizovane preporuke, čuvajte omiljene salone i pratite
-          rezervacije.
-        </p>
-        <div className="login-buttons">
-          <button>Prijavite se</button>
-          <button className="outline">Nemate nalog?</button>
-        </div>
-      </div>
-
+      {!isLoggedIn && (
+          <div className="login-box">
+            <h3>🔒 Za još bolje iskustvo, prijavite se!</h3>
+            <p>
+              Dobijajte personalizovane preporuke, čuvajte omiljene usluge i pratite
+              rezervacije.
+            </p>
+            <div className="login-buttons">
+              <button onClick={() => navigate("/login")}>Prijavite se</button>
+              <button className="outline" onClick={() => navigate("/register")}>
+                Nemate nalog?
+              </button>
+            </div>
+          </div>
+        )}
       <div className="map-section">
         <h2>📍 Gde se nalazimo?</h2>
-        <iframe
-          title="map"
-          src="https://www.google.com/maps?q=Belgrade&t=&z=13&ie=UTF8&iwloc=&output=embed"
-        ></iframe>
+        <Map/>
       </div>
     </div>
   );

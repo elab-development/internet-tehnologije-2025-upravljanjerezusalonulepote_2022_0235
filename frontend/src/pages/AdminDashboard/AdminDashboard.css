@@ -1,0 +1,210 @@
+.admin-container {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.admin-title {
+  font-size: 2.8rem; 
+  text-align: center;
+  margin: 60px 0 10px;
+  font-weight: 800;
+  position: relative;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  
+  background: linear-gradient(135deg, #1a4a7a 30%, #99CCFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+.admin-title::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 6px; 
+  background: linear-gradient(135deg, #99CCFF 0%, #FBC2EB 100%); 
+  margin: 15px auto 40px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(153, 204, 255, 0.4);
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+  perspective: 1000px;
+}
+
+.admin-card {
+  position: relative;
+  background: linear-gradient(135deg, #99CCFF 0%, #FBC2EB 50%);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-top: 4px solid #ff69b4;
+  overflow: hidden;
+}
+
+.admin-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(153, 204, 255, 0.2);
+}
+
+.admin-card.status-confirmed { border-left: 8px solid #48bb78; } 
+.admin-card.status-rejected { border-left: 8px solid #f56565; }  
+.admin-card.status-pending { border-left: 8px solid #ed8936; }   
+
+.appointment-time-info {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.appointment-time-info span {
+  display: flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #99CCFF; 
+  color: #1a4a7a;
+}
+
+/* DETAILS (NAME, SERVICE, PRICE) */
+.appointment-details {
+  padding: 15px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  margin: 10px 0;
+}
+
+.appointment-details p {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between; 
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.appointment-details strong {
+  color: #1a4a7a;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.approve-btn, .reject-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.approve-btn {
+  background-color: #99CCFF;
+  color: #1a4a7a;
+  box-shadow: 0 4px 0 #7fb8f0;
+}
+
+.approve-btn:hover {
+  background-color: #87bfff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #7fb8f0;
+}
+
+.reject-btn {
+  background: linear-gradient(135deg, #FFDEE9 0%, #FBC2EB 100%);
+  color: #880e4f;
+  box-shadow: 0 4px 0 #e1b1cc;
+}
+
+.reject-btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #e1b1cc;
+}
+
+.approve-btn:active, .reject-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 transparent;
+}
+
+.delete-icon-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.7); 
+  color: #f56565;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(254, 215, 215, 0.5);
+  transition: all 0.2s;
+  z-index: 5;
+  font-size: 1rem; 
+}
+
+.delete-icon-btn:hover {
+  background: #f56565;
+  color: white;
+  transform: scale(1.1) rotate(15deg);
+}
+
+.status-badge {
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.status-confirmed {
+  background-color: rgba(72, 187, 120, 0.2); 
+  color: #276749;
+  border: 1px solid rgba(72, 187, 120, 0.3);
+}
+
+.status-rejected {
+  background-color: rgba(245, 101, 101, 0.2);
+  color: #9b2c2c;
+  border: 1px solid rgba(245, 101, 101, 0.3);
+}
+
+.status-pending {
+  background-color: rgba(237, 137, 54, 0.2); 
+  color: #7b341e;
+  border: 1px solid rgba(237, 137, 54, 0.3);
+}

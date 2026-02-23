@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Booking.css';
+import CurrencyConverter from '../../components/CurrencyConverter';
+
 export default function Booking({ triggerTransition }) {
   const [services, setServices] = useState([]);      
   const [availableSchedules, setAvailableSchedules] = useState([]); 
@@ -93,7 +95,10 @@ useEffect(() => {
               onClick={() => setSelectedService(s)}
             >
               <strong>{s.name}</strong>
-              <p>{s.price} RSD</p>
+              <p>
+                {s.price} RSD 
+                <CurrencyConverter rsdPrice={s.price} />
+              </p>
             </button>
           ))}
         </div>

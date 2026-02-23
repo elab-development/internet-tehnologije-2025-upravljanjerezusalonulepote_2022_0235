@@ -8,9 +8,10 @@ import Register from './pages/Register/Register';
 import About from './pages/About/About';
 import Booking from './pages/Booking/Booking';
 import EmployeeDashboard from './pages/Dashboard/EmployeeDashboard';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import Loader from './components/Loader';
 import Profile from './pages/Profile/Profile';
-
+import ScrollToTop from "./components/ScrollToTop";
 function AppContent() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ function AppContent() {
   useEffect(() => {
     const role = localStorage.getItem("userRole");
     setUserRole(role);
-  }, []);
+  }, [location]);
 
   const triggerTransition = (path) => {
     setLoading(true); 
@@ -30,6 +31,7 @@ function AppContent() {
 
   return (
     <>
+      <ScrollToTop />
       {loading && <Loader />} 
       <Navbar triggerTransition={triggerTransition} />
       <Routes>
@@ -39,11 +41,13 @@ function AppContent() {
         <Route path='/about' element={<About />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/dashboard' element={<EmployeeDashboard />} />
+        <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route 
           path="/booking" 
-          element={
-            userRole === "MAKEUP_ARTIST" ? <EmployeeDashboard /> : <Booking />
-          } 
+                element={
+                  userRole === "MAKEUP_ARTIST" ? <EmployeeDashboard /> : 
+                  userRole === "ADMIN" ? <AdminDashboard /> : <Booking />
+                }
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

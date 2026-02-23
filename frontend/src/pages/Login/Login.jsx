@@ -60,13 +60,13 @@ function Login() {
             localStorage.setItem("userRole", role);
             localStorage.setItem("user", JSON.stringify(data.data.user)); 
             
-            if (role === "MAKEUP_ARTIST" || role === "ADMIN") {
-                window.location.href = "/dashboard"; 
+           if (role === "ADMIN") {
+                navigate("/admin-dashboard");
+            } else if (role === "MAKEUP_ARTIST") {
+                navigate("/dashboard"); 
             } else {
-                window.location.href = "/booking"; 
-            
+                navigate("/booking");
             }
-
             } else {
                 setPasswordError(data.error || "Pogrešan email ili lozinka.");
             }
