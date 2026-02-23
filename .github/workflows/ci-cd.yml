@@ -9,6 +9,16 @@ on:
 jobs:
   backend-testing:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: salon_lepote_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - uses: actions/checkout@v4
       
@@ -21,12 +31,30 @@ jobs:
         working-directory: ./backend
         run: npm install
         
+      - name: Setup Database
+        working-directory: ./backend
+        env:
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          DB_PASS: root
+          DB_NAME: salon_lepote_test
+        run: |
+          npx sequelize-cli db:migrate
+          node seedAll.js
+
       - name: Run Backend Tests
         working-directory: ./backend
-        run: npm test || echo "Nema testova, ali prolazimo dalje"
+        env:
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          DB_PASS: root
+          DB_NAME: salon_lepote_test
+          JWT_SECRET: tajna_za_testove
+        run: npm test
 
   frontend-testing:
     runs-on: ubuntu-latest
+    needs: backend-testing
     steps:
       - uses: actions/checkout@v4
       
@@ -39,9 +67,16 @@ jobs:
         working-directory: ./frontend
         run: npm install
         
-      - name: Run Frontend Tests
+      - name: Run Unit Tests (Vitest)
         working-directory: ./frontend
-        run: npm test || echo "Nema testova, ali prolazimo dalje"
+        run: npm test 
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: frontend
+          start: npm run dev
+          wait-on: 'http://localhost:5173' 
+          browser: chrome
 
   docker-build-and-push:
     needs: [backend-testing, frontend-testing]
@@ -56,16 +91,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Backend Image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./backend
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/salon-backend:latest
-
-      - name: Build and Push Frontend Image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./frontend
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/salon-frontend:latest
+      - name: Build and Push Images
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/salon-backend:latest ./backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/salon-frontend:latest ./frontend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/salon-backend:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/salon-frontend:latest
