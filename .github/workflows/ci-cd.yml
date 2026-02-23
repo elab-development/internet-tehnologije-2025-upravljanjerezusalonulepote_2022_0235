@@ -39,7 +39,6 @@ jobs:
           DB_PASS: ""
           DB_NAME: kozmetickisalon
         run: |
-          # Koristimo tačan URL sa tvojim nazivom baze i bez lozinke
           npx sequelize-cli db:migrate --url 'mysql://root@127.0.0.1:3306/kozmetickisalon'
           node seedAll.js
 
@@ -62,8 +61,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          
+          node-version: '20'
+
       - name: Install Frontend Dependencies
         working-directory: ./frontend
         run: npm install

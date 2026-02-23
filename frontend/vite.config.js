@@ -8,6 +8,11 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',
     include: ['**/*.{test,spec}.{js,jsx}'],
+    server: {
+      deps: {
+        inline: [/@exodus\/bytes/, /html-encoding-sniffer/]
+      }
+    },
     deps: {
       optimizer: {
         web: {
