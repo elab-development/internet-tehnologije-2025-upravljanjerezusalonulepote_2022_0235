@@ -13,8 +13,8 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: salon_lepote_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+          MYSQL_DATABASE: kozmetickisalon 
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -36,10 +36,11 @@ jobs:
         env:
           DB_HOST: 127.0.0.1
           DB_USER: root
-          DB_PASS: root
-          DB_NAME: salon_lepote_test
+          DB_PASS: ""
+          DB_NAME: kozmetickisalon
         run: |
-          npx sequelize-cli db:migrate
+          # Koristimo tačan URL sa tvojim nazivom baze i bez lozinke
+          npx sequelize-cli db:migrate --url 'mysql://root@127.0.0.1:3306/kozmetickisalon'
           node seedAll.js
 
       - name: Run Backend Tests
@@ -47,8 +48,8 @@ jobs:
         env:
           DB_HOST: 127.0.0.1
           DB_USER: root
-          DB_PASS: root
-          DB_NAME: salon_lepote_test
+          DB_PASS: ""
+          DB_NAME: kozmetickisalon 
           JWT_SECRET: tajna_za_testove
         run: npm test
 
@@ -70,6 +71,7 @@ jobs:
       - name: Run Unit Tests (Vitest)
         working-directory: ./frontend
         run: npm test 
+
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
