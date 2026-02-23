@@ -1,13 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import AdminDashboard from './AdminDashboard';
 import { BrowserRouter } from 'react-router-dom';
-import { expect, test, beforeEach } from 'vitest';
+import { expect, test, beforeEach, vi } from 'vitest';
+import axios from 'axios';
+
+vi.mock('axios');
 
 beforeEach(() => {
   localStorage.clear();
-  localStorage.setItem('role', 'admin');
+  vi.clearAllMocks();
+
+  localStorage.setItem('userRole', 'ADMIN'); 
   localStorage.setItem('token', 'fake-jwt-token');
-  localStorage.setItem('user', JSON.stringify({ role: 'admin' }));
+
+  axios.get.mockResolvedValue({ data: [] });
 });
 
 test('Renderuje naslov Admin Dashboarda', async () => {
