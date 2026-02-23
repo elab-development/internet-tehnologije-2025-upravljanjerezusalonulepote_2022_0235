@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-# Za frontend se obično koristi Nginx da servira statičke fajlove
+
 FROM nginx:alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
 EXPOSE 80

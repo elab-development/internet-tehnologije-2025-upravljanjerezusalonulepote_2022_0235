@@ -2,9 +2,22 @@ require("dotenv").config();
 const express = require('express'); 
 const cors = require('cors');
 const app = require("./app"); 
-const { sequelize } = require("./models");
+const { Sequelize } = require("sequelize");
 
 app.use(cors());
+
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: "mysql",
+    logging: console.log
+  }
+);
 
 const PORT = process.env.PORT || 3000;
 
