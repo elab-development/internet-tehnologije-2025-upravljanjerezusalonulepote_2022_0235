@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const app = express();
+app.set('trust proxy', 1); 
 app.use(helmet());
 const allowedOrigins = [
   'https://frontend-production-65af.up.railway.app', 
@@ -18,11 +19,13 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.error(`CORS BLOKADA: Origin ${origin} nije u listi dozvoljenih!`);
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(bodyParser.json());
 
