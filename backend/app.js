@@ -9,7 +9,7 @@ const app = express();
 app.set('trust proxy', 1); 
 app.use(helmet());
 const allowedOrigins = [
-  'https://frontend-production-65af.up.railway.app', 
+  'https://front-production-4126.up.railway.app', 
   'http://localhost:5173',                        
   'http://localhost:3000'                         
 ];
