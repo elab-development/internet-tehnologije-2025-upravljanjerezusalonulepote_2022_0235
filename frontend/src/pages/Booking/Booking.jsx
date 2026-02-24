@@ -16,9 +16,10 @@ export default function Booking({ triggerTransition }) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const isLoggedIn = !!token;
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
  useEffect(() => {
-  axios.get('http://localhost:3000/api/services')
+  axios.get(`${API_BASE_URL}/api/services`)
     .then(res => {
       console.log("Stiglo sa servera:", res.data);
       
@@ -40,7 +41,7 @@ export default function Booking({ triggerTransition }) {
 useEffect(() => {
   if (selectedDate) {
     console.log("React šalje datum:", selectedDate); 
-    axios.get(`http://localhost:3000/api/appointments/schedules?date=${selectedDate}`)
+    axios.get(`${API_BASE_URL}/api/appointments/schedules?date=${selectedDate}`)
       .then(res => {
         console.log("Stigli termini sa backenda:", res.data.data);
         setAvailableSchedules(res.data.data || []);
@@ -65,7 +66,7 @@ useEffect(() => {
     };
 
     try {
-        const response = await axios.post('http://localhost:3000/api/appointments', data, {
+        const response = await axios.post(`${API_BASE_URL}/api/appointments`, data, {
             headers: { Authorization: `Bearer ${token}` }
         });
 

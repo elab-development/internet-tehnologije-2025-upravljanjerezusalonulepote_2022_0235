@@ -3,7 +3,7 @@ import './EmployeeDashboard.css';
 import axios from 'axios';
 export default function EmployeeDashboard() {
   const role = localStorage.getItem("userRole");
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   if (role !== "MAKEUP_ARTIST") {
     return <div className="error-msg">Nemate ovlašćenje da pristupite ovoj stranici.</div>;
   }
@@ -16,7 +16,7 @@ export default function EmployeeDashboard() {
 
  const fetchAppointments = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/appointments', {
+    const res = await axios.get(`${API_BASE_URL}/api/appointments`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -40,7 +40,7 @@ export default function EmployeeDashboard() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:3000/api/appointments/${id}/status`, 
+      await axios.put(`${API_BASE_URL}/api/appointments/${id}/status`, 
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

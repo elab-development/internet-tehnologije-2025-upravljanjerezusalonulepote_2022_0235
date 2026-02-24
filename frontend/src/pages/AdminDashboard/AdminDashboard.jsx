@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function AdminDashboard() {
   const role = localStorage.getItem("userRole");
-
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   if (role !== "ADMIN") {
     return <div className="error-msg">Nemate ovlašćenje da pristupite ovoj stranici.</div>;
   }
@@ -18,7 +18,7 @@ export default function AdminDashboard() {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/appointments', {
+      const res = await axios.get(`${API_BASE_URL}/api/appointments`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAppointments(res.data.data || res.data);
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:3000/api/appointments/${id}/status`, 
+      await axios.put(`${API_BASE_URL}/api/appointments/${id}/status`, 
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -43,7 +43,7 @@ export default function AdminDashboard() {
   const handleDelete = async (id) => {
     if (window.confirm("Da li ste sigurni da želite trajno da obrišete ovu rezervaciju?")) {
       try {
-        await axios.delete(`http://localhost:3000/api/appointments/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/appointments/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         alert("Rezervacija obrisana!");
