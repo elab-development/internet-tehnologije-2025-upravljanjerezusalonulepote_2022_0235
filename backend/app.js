@@ -7,8 +7,20 @@ const serviceRoutes = require("./routes/serviceRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const app = express();
 app.use(helmet());
+const allowedOrigins = [
+  'https://frontend-production-65af.up.railway.app', 
+  'http://localhost:5173',                        
+  'http://localhost:3000'                         
+];
+
 app.use(cors({
-  origin: 'https://frontend-production-65af.up.railway.app', // URL sa slike image_6c1521.png
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
