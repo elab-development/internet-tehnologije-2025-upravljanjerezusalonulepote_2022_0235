@@ -1,12 +1,16 @@
 const fs = require('fs');
 const path = require('path');
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 
 const db = {};
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+
+const sequelize = process.env.MYSQL_URL
+  ? new Sequelize(process.env.MYSQL_URL, { dialect: 'mysql', logging: console.log })
+  : new Sequelize(config.database, config.username, config.password, config);
 
 fs
   .readdirSync(__dirname)
