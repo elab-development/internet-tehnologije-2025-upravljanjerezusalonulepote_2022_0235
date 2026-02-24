@@ -6,12 +6,6 @@ const { Sequelize } = require("sequelize");
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.RAILWAY_ENVIRONMENT;
 
-app.use(cors({
-    origin: "*", 
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
-
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
