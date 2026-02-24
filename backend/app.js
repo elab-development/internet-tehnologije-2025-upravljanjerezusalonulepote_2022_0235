@@ -7,7 +7,11 @@ const serviceRoutes = require("./routes/serviceRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const app = express();
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: 'https://frontend-production-65af.up.railway.app', // URL sa slike image_6c1521.png
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 const rateLimit = require('express-rate-limit');
