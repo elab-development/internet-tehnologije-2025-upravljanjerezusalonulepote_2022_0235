@@ -4,8 +4,13 @@ const cors = require('cors');
 const app = require("./app"); 
 const { Sequelize } = require("sequelize");
 
-app.use(cors());
+const isProduction = process.env.NODE_ENV === 'production' || process.env.RAILWAY_ENVIRONMENT;
 
+app.use(cors({
+    origin: "*", 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -15,7 +20,13 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: "mysql",
-    logging: console.log
+    dialectOptions: isProduction ? {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    } : {}, 
+    logging: isProduction ? false : console.log
   }
 );
 
@@ -23,11 +34,11 @@ const PORT = process.env.PORT || 3000;
 
 sequelize.sync({ alter: false })
   .then(() => {
-    console.log("Baza uspešno sinhronizovana");
+    console.log(`✅ Baza sinhronizovana (${isProduction ? 'PRODUKCIJA' : 'LOKAL'})`);
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
   .catch(err => {
-    console.error("Greška pri sinhronizaciji baze:", err);
+    console.error("❌ Greška:", err);
   });
