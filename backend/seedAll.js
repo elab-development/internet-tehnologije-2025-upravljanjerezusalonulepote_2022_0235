@@ -100,8 +100,7 @@ const seedDatabase = async () => {
 
   } catch (error) {
     console.error("❌ Greška pri punjenju baze:", error);
-    process.exit(1);
   }
 };
 
-module.exports = seedDatabase();
+module.exports = seedDatabase;
