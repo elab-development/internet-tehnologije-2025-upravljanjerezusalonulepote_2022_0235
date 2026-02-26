@@ -4,9 +4,13 @@ const { User, Service, Schedule, Notification, sequelize } = db;
 
 const seedDatabase = async () => {
   try {
-    await sequelize.sync({ force: true }); 
+    await sequelize.sync({ alter: true }); 
     console.log("Baza je povezana...");
-
+    const userCount = await User.count();
+        if (userCount > 0) {
+          console.log("ℹ️ Podaci već postoje u bazi, preskačem seed.");
+          return; 
+        }
     const saltRounds = 10;
     const hashedPass = await bcrypt.hash("lozinka123", saltRounds);
 
@@ -94,11 +98,10 @@ const seedDatabase = async () => {
     console.log(`✅ Korisnici, Usluge, Rasporedi i Notifikacije su u bazi.`);
     console.log("-----------------------------------------");
 
-    process.exit();
   } catch (error) {
     console.error("❌ Greška pri punjenju baze:", error);
     process.exit(1);
   }
 };
 
-seedDatabase();
+module.exports = seedDatabase();

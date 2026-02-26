@@ -39,7 +39,7 @@ function Login() {
         if (!valid) return;
 
         try {
-        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
         const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',

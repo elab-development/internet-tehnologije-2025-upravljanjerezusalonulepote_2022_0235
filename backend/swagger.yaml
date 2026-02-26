@@ -5,6 +5,8 @@ info:
   description: API za upravljanje rezervacijama i korisnicima
 
 servers:
+  - url: http://localhost:8080
+    description: Docker Server (Port 8080)
   - url: http://localhost:3000
     description: Lokalni server
 

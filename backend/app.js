@@ -11,7 +11,8 @@ app.use(helmet());
 const allowedOrigins = [
   'https://front-production-4126.up.railway.app', 
   'http://localhost:5173',                        
-  'http://localhost:3000'                         
+  'http://localhost:8080',
+  'http://localhost'                         
 ];
 
 app.use(cors({
